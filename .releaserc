@@ -1,0 +1,15 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    "semantic-release-gitmoji",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md", "package.json"],
+        "message": ":bookmark: release ${nextRelease.version} [skip ci]"
+      }
+    ]
+  ]
+}
