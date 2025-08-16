@@ -36,6 +36,3 @@ kubectl kustomize kustomize/overlays/test | k apply -f -
 You should now see the ArgoCD application in the UI.
 
 ## Install OpenTelemetry Operator
-
-```bash
-kubectl apply -f
