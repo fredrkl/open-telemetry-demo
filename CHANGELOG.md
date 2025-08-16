@@ -1,3 +1,8 @@
+# [v1.4.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.3.0...v1.4.0) (2025-08-16)
+
+## ✨ New Features
+- [`d233ef9`](https://github.com/fredrkl/open-telemetry-demo/commit/d233ef9)  Basic demo
+
 # [v1.3.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.2.0...v1.3.0) (2025-08-16)
 
 ## ✨ New Features
