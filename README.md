@@ -27,21 +27,13 @@ Username is `admin` and password is the output from:
 argocd admin initial-password -n argocd
 ```
 
-## Accessing the ArgoCD UI
-
-Get the initial password with the following command:
+## Kick off argoCD sync
 
 ```bash
-k get secrets argocd-initial-admin-secret -n argocd -o yaml
+kubectl kustomize kustomize/overlays/test | k apply -f -
 ```
 
-Ignore the last `%` in the password.
-
-Then access the UI with the following command:
-
-```bash
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-```
+You should now see the ArgoCD application in the UI.
 
 ## Install OpenTelemetry Operator
 
