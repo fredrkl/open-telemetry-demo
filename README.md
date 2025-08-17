@@ -38,3 +38,11 @@ kubectl kustomize kustomize/overlays/test | k apply -f -
 ```
 
 You should now see the ArgoCD application in the UI.
+
+## Test the setup
+
+We will be using OpenTelemetry Demo load generator to test the setup.
+
+```bash
+kubectl apply -f setup-test.yaml
+```

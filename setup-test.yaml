@@ -1,0 +1,18 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: telemetrygen
+  namespace: otel
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: telemetrygen
+          image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:latest
+          args:
+            - logs
+            - --duration=30s
+            - --otlp-insecure
+            - --otlp-endpoint=main-collector.otel.svc.cluster.local:4317
