@@ -4,6 +4,7 @@ kind: OpenTelemetryCollector
 metadata:
   name: main
 spec:
+  mode: deployment
   replicas: 2
   config:
     receivers:
