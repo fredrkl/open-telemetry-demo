@@ -3,6 +3,7 @@ apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: main
+  namespace: otel
 spec:
   mode: deployment
   replicas: 2
