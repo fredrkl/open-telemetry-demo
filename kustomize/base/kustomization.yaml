@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - app-of-apps.yaml
-  - otel.yaml
