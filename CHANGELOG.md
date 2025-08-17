@@ -1,3 +1,8 @@
+# [v1.7.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.6.0...v1.7.0) (2025-08-17)
+
+## ✨ New Features
+- [`46a76d8`](https://github.com/fredrkl/open-telemetry-demo/commit/46a76d8)  Otel operator again
+
 # [v1.6.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.5.0...v1.6.0) (2025-08-17)
 
 ## ✨ New Features
