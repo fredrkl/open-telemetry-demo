@@ -1,7 +1,8 @@
 # Open Telemetry Demo
 
 This demo repo showcases how to set up an OpenTelemetry Operator on a
-Kubernetes cluster using ArgoCD for deployment management.
+Kubernetes cluster using ArgoCD for deployment management. It uses the
+[app-of-apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern).
 
 ## Local K8s cluster
 
