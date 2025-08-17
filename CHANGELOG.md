@@ -1,3 +1,8 @@
+# [v1.6.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.5.0...v1.6.0) (2025-08-17)
+
+## ✨ New Features
+- [`8df5899`](https://github.com/fredrkl/open-telemetry-demo/commit/8df5899)  Open Telemetry Operator
+
 # [v1.5.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.4.0...v1.5.0) (2025-08-16)
 
 ## ✨ New Features
