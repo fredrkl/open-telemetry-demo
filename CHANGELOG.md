@@ -1,3 +1,8 @@
+# [v1.9.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.8.0...v1.9.0) (2025-08-17)
+
+## ✨ New Features
+- [`93c2df4`](https://github.com/fredrkl/open-telemetry-demo/commit/93c2df4)  Daemonset oTel deployment
+
 # [v1.8.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.7.0...v1.8.0) (2025-08-17)
 
 ## ✨ New Features
