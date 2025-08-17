@@ -1,5 +1,8 @@
 # Open Telemetry Demo
 
+This demo repo showcases how to set up an OpenTelemetry Operator on a
+Kubernetes cluster using ArgoCD for deployment management.
+
 ## Local K8s cluster
 
 ```bash
@@ -34,5 +37,3 @@ kubectl kustomize kustomize/overlays/test | k apply -f -
 ```
 
 You should now see the ArgoCD application in the UI.
-
-## Install OpenTelemetry Operator
