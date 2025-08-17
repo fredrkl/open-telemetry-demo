@@ -1,3 +1,8 @@
+# [v1.10.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.9.0...v1.10.0) (2025-08-17)
+
+## ✨ New Features
+- [`2d0f2c2`](https://github.com/fredrkl/open-telemetry-demo/commit/2d0f2c2)  OTel test data genereator
+
 # [v1.9.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.8.0...v1.9.0) (2025-08-17)
 
 ## ✨ New Features
