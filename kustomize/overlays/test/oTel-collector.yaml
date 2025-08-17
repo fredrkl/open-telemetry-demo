@@ -4,7 +4,7 @@ kind: OpenTelemetryCollector
 metadata:
   name: main
 spec:
-  mode: daemonset
+  replicas: 2
   config:
     receivers:
       otlp:
