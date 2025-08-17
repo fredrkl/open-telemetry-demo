@@ -6,7 +6,7 @@ metadata:
   namespace: otel
 spec:
   mode: deployment
-  replicas: 2
+  replicas: 1
   config:
     receivers:
       otlp:
