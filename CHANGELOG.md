@@ -1,3 +1,8 @@
+# [v1.8.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.7.0...v1.8.0) (2025-08-17)
+
+## ✨ New Features
+- [`c284fa5`](https://github.com/fredrkl/open-telemetry-demo/commit/c284fa5)  Otel collector instance
+
 # [v1.7.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.6.0...v1.7.0) (2025-08-17)
 
 ## ✨ New Features
