@@ -42,6 +42,8 @@ spec:
             enabled: false
         # Single-binary deployment
         deploymentMode: SingleBinary
+        chunksCache:
+          enabled: false
         singleBinary:
           replicas: 1
           persistence:
