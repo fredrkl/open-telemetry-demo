@@ -22,7 +22,7 @@ spec:
             configs:
               - from: "2024-04-01"
                 store: tsdb
-                object_store: s3
+                object_store: filesystem
                 schema: v13
                 index:
                   prefix: loki_index_
@@ -36,7 +36,7 @@ spec:
             enable_api: true
         # Enable the chart’s embedded MinIO for dev/test.
         minio:
-          enabled: true
+          enabled: false
           # For kind, disable persistence to avoid PVC friction. (Optional)
           persistence:
             enabled: false
@@ -48,6 +48,9 @@ spec:
           replicas: 1
           persistence:
             enabled: false
+        extraVolumeMounts:
+        - name: loki-data
+          mountPath: /var/loki
         # Zero out other modes
         backend:
           replicas: 0
@@ -73,6 +76,9 @@ spec:
           replicas: 0
         bloomGateway:
           replicas: 0
+        extraVolumes:
+        - name: loki-data
+          emptyDir: {}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
