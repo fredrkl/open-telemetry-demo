@@ -44,6 +44,8 @@ spec:
         deploymentMode: SingleBinary
         singleBinary:
           replicas: 1
+          persistence:
+            enabled: false
         # Zero out other modes
         backend:
           replicas: 0
