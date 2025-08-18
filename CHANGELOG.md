@@ -1,3 +1,8 @@
+# [v1.11.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.10.0...v1.11.0) (2025-08-18)
+
+## ✨ New Features
+- [`33afd4b`](https://github.com/fredrkl/open-telemetry-demo/commit/33afd4b)  Do not replace
+
 # [v1.10.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.9.0...v1.10.0) (2025-08-17)
 
 ## ✨ New Features
