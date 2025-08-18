@@ -6,3 +6,4 @@ resources:
   - app-of-apps.yaml
   - otel.yaml
   - oTel-collector.yaml
+  - loki.yaml
