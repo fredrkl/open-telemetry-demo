@@ -54,4 +54,18 @@ cluster. You can follow the instructions above to get the open-telemetry
 operator up and running on AKS as well. Once that is done, follow the steps on:
 <https://grafana.com/docs/loki/latest/setup/install/helm/deployment-guides/azure/>.
 
-### 
+### AKS
+
+```bash
+az group create --name otel-demo --location norwayeast
+```
+
+```bash
+az aks create \
+  --resource-group otel-demo \
+  --name ote-demo \
+  --node-count 3 \
+  --node-vm-size Standard_E2ds_v5 \
+  --enable-workload-identity \
+  --enable-oidc-issuer
+```
