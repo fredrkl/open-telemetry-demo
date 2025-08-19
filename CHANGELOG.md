@@ -1,3 +1,8 @@
+# [v1.12.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.11.0...v1.12.0) (2025-08-19)
+
+## ✨ New Features
+- [`1a83ba3`](https://github.com/fredrkl/open-telemetry-demo/commit/1a83ba3)  Only otel
+
 # [v1.11.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.10.0...v1.11.0) (2025-08-18)
 
 ## ✨ New Features
