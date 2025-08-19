@@ -4,8 +4,6 @@ kind: Application
 metadata:
   name: otel-collector
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"   # for the operator app
 spec:
   project: default
   source:
