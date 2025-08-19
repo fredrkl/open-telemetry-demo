@@ -46,3 +46,12 @@ We will be using OpenTelemetry Demo load generator to test the setup.
 ```bash
 kubectl apply -f setup-test.yaml
 ```
+
+## Loki setup demo
+
+In order to setup Loki, we will be using an Azure Kubernetes Service (AKS)
+cluster. You can follow the instructions above to get the open-telemetry
+operator up and running on AKS as well. Once that is done, follow the steps on:
+<https://grafana.com/docs/loki/latest/setup/install/helm/deployment-guides/azure/>.
+
+### 
