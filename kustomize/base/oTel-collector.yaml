@@ -4,6 +4,8 @@ kind: OpenTelemetryCollector
 metadata:
   name: main
   namespace: otel
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"   # for the collectors app
 spec:
   mode: deployment
   replicas: 1
