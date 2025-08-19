@@ -51,21 +51,77 @@ kubectl apply -f setup-test.yaml
 
 In order to setup Loki, we will be using an Azure Kubernetes Service (AKS)
 cluster. You can follow the instructions above to get the open-telemetry
-operator up and running on AKS as well. Once that is done, follow the steps on:
+operator up and running on AKS as well. Once that is done, continue here. This
+guide is following:
 <https://grafana.com/docs/loki/latest/setup/install/helm/deployment-guides/azure/>.
 
 ### AKS
 
 ```bash
-az group create --name otel-demo --location norwayeast
+export RESOURCE_GROUP="otel-demo"
+export LOCATION="norwayeast"
+export ACCOUNT_NAME="oteldemo"
+```
+
+```bash
+az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
 
 ```bash
 az aks create \
-  --resource-group otel-demo \
+  --resource-group $RESOURCE_GROUP \
   --name ote-demo \
   --node-count 3 \
-  --node-vm-size Standard_E2ds_v5 \
   --enable-workload-identity \
   --enable-oidc-issuer
+```
+
+```bash
+az storage account create \
+--name oteldemo \
+--location norwayeast \
+--sku Standard_ZRS \
+--encryption-services blob \
+--resource-group  otel-demo
+```
+
+```bash
+az storage container create --account-name $ACCOUNT_NAME \
+--name chunk && \
+az storage container create --account-name $ACCOUNT_NAME \
+--name ruler
+```
+
+```bash
+export OIDC=$(az aks show \
+--resource-group $RESOURCE_GROUP \
+--name ote-demo \
+--query "oidcIssuerProfile.issuerUrl" \
+-o tsv)
+```
+
+Update the credentials with the OIDC value.
+
+```bash
+cat credentials.json | envsubst > credentials-render.yaml
+```
+
+```bash
+export APP_ID=$(az ad app create \
+ --display-name loki \
+ --query appId \
+ -o tsv)
+ ```
+
+```bash
+ az ad app federated-credential create \
+  --id $APP_ID \
+  --parameters credentials-render.json
+```
+
+```bash
+az role assignment create \
+  --role "Storage Blob Data Contributor" \
+  --assignee $APP_ID \
+  --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME
 ```
