@@ -42,7 +42,7 @@ spec:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
-        deploymentMode: Distributed
+        deploymentMode: SimpleScalable
         ingester:
           replicas: 3
           zoneAwareReplication:
