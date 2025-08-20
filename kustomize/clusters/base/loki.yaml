@@ -51,10 +51,6 @@ spec:
           replicas: 2
         minio:
           enabled: false
-        chunksCache:
-          enabled: true            # or leave as-is (it’s enabled by default)
-        resultsCache:
-          enabled: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
