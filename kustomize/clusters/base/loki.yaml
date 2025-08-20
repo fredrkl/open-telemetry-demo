@@ -27,10 +27,6 @@ spec:
                   period: 24h
           ingester:
             chunk_encoding: snappy
-          tracing:
-            enabled: true
-          querier:
-            max_concurrent: 4
           storage:
             type: azure
             azure:
@@ -42,15 +38,40 @@ spec:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
-        deploymentMode: SimpleScalable
-        backend:
-          replicas: 3
-        read:
-          replicas: 2
-        write:
-          replicas: 2
         minio:
           enabled: false
+        deploymentMode: SingleBinary
+        singleBindary:
+          replicas: 3
+          persistence:
+            storageClass: gp2
+            accessModes:
+              - ReadWriteOnce
+            size: 30Gi
+        backend:
+          replicas: 0
+        read:
+          replicas: 0
+        write:
+          replicas: 0
+        ingester:
+          replicas: 0
+        querier:
+          replicas: 0
+        queryFrontend:
+          replicas: 0
+        queryScheduler:
+          replicas: 0
+        distributor:
+          replicas: 0
+        compactor:
+          replicas: 0
+        indexGateway:
+          replicas: 0
+        bloomCompactor:
+          replicas: 0
+        bloomGateway:
+          replicas: 0
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
