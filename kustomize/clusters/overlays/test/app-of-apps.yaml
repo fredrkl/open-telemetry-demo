@@ -16,6 +16,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - SkipDryRunOnMissingResource=true
     automated:
       prune: true
       selfHeal: true
