@@ -78,8 +78,9 @@ spec:
         singleBinary:
           replicas: 0
         chunksCache:
-          enabled: true            # or leave as-is (it’s enabled by default)
-          allocatedMemory: 1024    # MiB; start with 1024–2048 on small clusters
+          enabled: false            # or leave as-is (it’s enabled by default)
+        resultsCache:
+          enabled: false
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
