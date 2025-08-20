@@ -43,44 +43,18 @@ spec:
               ruler: "ruler"
               admin: "admin"
         deploymentMode: SimpleScalable
-        ingester:
-          replicas: 3
-          zoneAwareReplication:
-            enabled: false
-        querier:
-          replicas: 3
-          maxUnavailable: 2
-        queryFrontend:
-          replicas: 2
-          maxUnavailable: 1
-        queryScheduler:
-          replicas: 2
-        distributor:
-          replicas: 3
-          maxUnavailable: 2
-        compactor:
-          replicas: 1
-        indexGateway:
-          replicas: 2
-          maxUnavailable: 1
-        bloomPlanner:
-          replicas: 0
-        bloomBuilder:
-          replicas: 0
-        bloomGateway:
-          replicas: 0
         backend:
-          replicas: 0
+          replicas: 3
         read:
-          replicas: 0
+          replicas: 2
         write:
-          replicas: 0
-        singleBinary:
-          replicas: 0
-        chunksCache:
-          enabled: false            # or leave as-is (it’s enabled by default)
-        resultsCache:
+          replicas: 2
+        minio:
           enabled: false
+        chunksCache:
+          enabled: true            # or leave as-is (it’s enabled by default)
+        resultsCache:
+          enabled: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
