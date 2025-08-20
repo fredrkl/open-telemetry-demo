@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ../../base/
   - app-of-apps.yaml
-  - app-of-components.yaml
+#  - app-of-components.yaml

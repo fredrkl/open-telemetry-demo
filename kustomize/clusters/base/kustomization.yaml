@@ -2,5 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - oTel-collector.yaml
+  - cert-manager.yaml
   - loki.yaml
+  - oTel-collector.yaml
+  - otel.yaml
