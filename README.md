@@ -34,7 +34,7 @@ argocd admin initial-password -n argocd
 ## Kick off argoCD sync
 
 ```bash
-kubectl kustomize kustomize/overlays/test | k apply -f -
+kubectl kustomize kustomize/clusters/overlays/test | k apply -f -
 ```
 
 You should now see the ArgoCD application in the UI.
@@ -89,7 +89,9 @@ az storage account create \
 az storage container create --account-name $ACCOUNT_NAME \
 --name chunk && \
 az storage container create --account-name $ACCOUNT_NAME \
---name ruler
+--name ruler && \
+az storage container create --account-name $ACCOUNT_NAME \
+--name admin
 ```
 
 ```bash
@@ -103,7 +105,7 @@ export OIDC=$(az aks show \
 Update the credentials with the OIDC value.
 
 ```bash
-cat credentials.json | envsubst > credentials-render.yaml
+cat credentials.json | envsubst > credentials-render.json
 ```
 
 ```bash
