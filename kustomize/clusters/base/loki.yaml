@@ -48,6 +48,8 @@ spec:
             accessModes:
               - ReadWriteOnce
             size: 30Gi
+        chunksCache:
+          allocatedMemory: 1000
         backend:
           replicas: 0
         read:
