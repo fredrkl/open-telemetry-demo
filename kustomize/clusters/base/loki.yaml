@@ -44,13 +44,8 @@ spec:
         minio:
           enabled: false
         deploymentMode: SingleBinary
-        singleBindary:
+        singleBinary:
           replicas: 3
-          persistence:
-            storageClass: gp2
-            accessModes:
-              - ReadWriteOnce
-            size: 30Gi
         chunksCache:
           allocatedMemory: 1000
         backend:
