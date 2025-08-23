@@ -32,7 +32,6 @@ spec:
             azure:
               accountName: oteldemo
               useFederatedToken: false
-              endpointSuffix: core.windows.net
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
