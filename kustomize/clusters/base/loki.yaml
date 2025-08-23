@@ -33,9 +33,6 @@ spec:
               accountName: oteldemo
               useFederatedToken: true
               endpointSuffix: core.windows.net
-            object_store:
-              azure:
-                account_name: oteldemo
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
