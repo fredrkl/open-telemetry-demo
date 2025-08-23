@@ -32,7 +32,6 @@ spec:
             azure:
               accountName: oteldemo
               useFederatedToken: true
-              requestTimeout: 30
               endpointSuffix: core.windows.net
             object_store:
               azure:
