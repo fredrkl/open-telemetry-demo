@@ -41,6 +41,8 @@ spec:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
+        gateway:
+          enabled: false
         minio:
           enabled: false
         deploymentMode: SingleBinary
