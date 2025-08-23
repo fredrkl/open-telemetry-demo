@@ -37,6 +37,9 @@ spec:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
+          ruler:
+            enabled: false
+            enable_api: false
         gateway:
           enabled: false
         minio:
