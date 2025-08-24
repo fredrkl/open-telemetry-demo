@@ -35,7 +35,6 @@ spec:
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
-              admin: "admin"
           ruler:
             enable_api: true
             storage:
