@@ -36,6 +36,12 @@ spec:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
+        serviceAccount:
+          name: loki
+          annotations:
+            "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
+          labels:
+            "azure.workload.identity/use": "true"
         gateway:
           enabled: false
         minio:
