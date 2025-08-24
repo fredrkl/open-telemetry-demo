@@ -27,10 +27,10 @@ spec:
                   period: 24h
           ingester:
             chunk_encoding: snappy
-          storage:
-            type: azure
+          storage_config:
             azure:
-              accountName: oteldemo
+              accountName: "oteldemo"
+              container_name: "chunks"
               use_federated_token: true
             bucketNames:
               chunks: "chunks"
@@ -43,6 +43,14 @@ spec:
                 account_name: oteldemo
                 container_name: ruler
                 use_federated_token: true
+          storage:
+            type: azure
+            bucketName:
+              chunks: "chunks"
+              ruler: "ruler"
+            azure:
+              accountName: oteldemo
+              useFederatedToken: true
         serviceAccount:
           name: loki
           annotations:
