@@ -31,7 +31,7 @@ spec:
             type: azure
             azure:
               accountName: oteldemo
-              useFederatedToken: true
+              use_federated_token: true
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
