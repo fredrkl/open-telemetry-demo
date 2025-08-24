@@ -45,7 +45,7 @@ spec:
                 use_federated_token: true
           storage:
             type: azure
-            bucketName:
+            bucketNames:
               chunks: "chunks"
               ruler: "ruler"
             azure:
