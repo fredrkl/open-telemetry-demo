@@ -31,11 +31,19 @@ spec:
             type: azure
             azure:
               accountName: oteldemo
-              useFederatedToken: true
+              useFederatedToken: false
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
               admin: "admin"
+          ruler:
+            enable_api: true
+            storage:
+              type: azure
+              azure:
+                account_name: oteldemo
+                container_name: ruler
+                use_federated_token: true
         serviceAccount:
           name: loki
           annotations:
