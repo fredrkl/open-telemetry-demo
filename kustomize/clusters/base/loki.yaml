@@ -30,11 +30,17 @@ spec:
               accountName: "oteldemo"
               container_name: "chunks"
               use_federated_token: true
-            bucketNames:
-              chunks: "chunks"
-              ruler: "ruler"
           ingester:
             chunk_encoding: snappy
+          pattern_ingester:
+            enabled: true
+          limits_config:
+            allow_structured_metadata: true
+            volume_enabled: true
+            retention_period: 672h # 28 days retention
+          compactor:
+            retention_enabled: true
+            delete_request_store: azure
           ruler:
             enable_api: true
             storage:
@@ -43,6 +49,9 @@ spec:
                 account_name: oteldemo
                 container_name: ruler
                 use_federated_token: true
+              alertmanager_url: http://prom:9093 # The URL of the Alertmanager to send alerts (Prometheus, Mimir, etc.)
+          querier:
+             max_concurrent: 4
           storage:
             type: azure
             bucketNames:
@@ -57,11 +66,11 @@ spec:
             "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
           labels:
             "azure.workload.identity/use": "true"
+        deploymentMode: SingleBinary
         gateway:
           enabled: false
         minio:
           enabled: false
-        deploymentMode: SingleBinary
         singleBinary:
           replicas: 3
         chunksCache:
