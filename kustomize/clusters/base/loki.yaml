@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: loki
   namespace: argocd
+  annotations:
+    # Configuration documentation
+    argocd.argoproj.io/sync-options: "CreateNamespace=true"
+    documentation: "See loki-setup-guide.md for detailed setup instructions"
 spec:
   project: default
   destination:
@@ -15,9 +19,16 @@ spec:
     targetRevision: 6.37.0
     helm:
       values: |
+        # Loki configuration for OpenTelemetry Demo
+        # This uses SingleBinary mode for simplicity in demo environments
+        # For production, consider switching to Distributed mode (see helm-chart-values.yaml)
+        
         loki:
+          # Azure Workload Identity integration
           podLabels:
             "azure.workload.identity/use": "true"
+          
+          # Schema configuration for TSDB with Azure backend
           schemaConfig:
             configs:
               - from: "2024-04-01"
@@ -27,56 +38,120 @@ spec:
                 index:
                   prefix: loki_index_
                   period: 24h
+          
+          # Azure Blob Storage configuration
+          # TODO: Parameterize these values for different environments
           storage_config:
             azure:
-              accountName: "oteldemo"
+              accountName: "oteldemo"  # Replace with your storage account
               container_name: "chunks"
               use_federated_token: true
+          
+          # Ingester configuration
           ingester:
             chunk_encoding: snappy
+            # Chunk settings for better performance
+            chunk_idle_period: 5m
+            chunk_target_size: 1048576  # 1MB chunks
+            max_chunk_age: 1h
+          
+          # Pattern ingester for log pattern detection
           pattern_ingester:
             enabled: true
+          
+          # Limits configuration
           limits_config:
             allow_structured_metadata: true
             volume_enabled: true
-            retention_period: 672h # 28 days retention
+            retention_period: 672h  # 28 days retention
+            # Rate limiting to prevent abuse
+            ingestion_rate_mb: 10
+            ingestion_burst_size_mb: 20
+            max_query_parallelism: 32
+          
+          # Compactor for retention and deletion
           compactor:
             retention_enabled: true
             delete_request_store: azure
+            # Run compaction every 10 minutes
+            compaction_interval: 10m
+          
+          # Ruler for alerting rules
           ruler:
             enable_api: true
             storage:
               type: azure
               azure:
-                account_name: oteldemo
+                account_name: oteldemo  # Replace with your storage account
                 container_name: ruler
                 use_federated_token: true
-              alertmanager_url: http://prom:9093 # The URL of the Alertmanager to send alerts (Prometheus, Mimir, etc.)
+              # TODO: Configure alertmanager URL for your environment
+              alertmanager_url: http://alertmanager:9093
+          
+          # Querier configuration for better performance
           querier:
-             max_concurrent: 4
+            max_concurrent: 4
+            query_timeout: 300s
+          
+          # Storage configuration for Azure
           storage:
             type: azure
             bucketNames:
               chunks: "chunks"
               ruler: "ruler"
+              admin: "admin"  # Added admin bucket
             azure:
-              accountName: oteldemo
+              accountName: oteldemo  # Replace with your storage account
               useFederatedToken: true
+        
+        # Service Account with Azure Workload Identity
         serviceAccount:
           name: loki
           annotations:
+            # TODO: Replace with your Azure AD application client ID
             "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
           labels:
             "azure.workload.identity/use": "true"
+        
+        # Deployment mode: SingleBinary for demo/dev, Distributed for production
         deploymentMode: SingleBinary
+        
+        # Gateway configuration (disabled for demo)
         gateway:
           enabled: false
+          # For production, consider enabling with authentication:
+          # enabled: true
+          # service:
+          #   type: LoadBalancer
+          # basicAuth:
+          #   enabled: true
+        
+        # Disable MinIO (using Azure Blob Storage instead)
         minio:
           enabled: false
+        
+        # SingleBinary configuration
         singleBinary:
           replicas: 3
+          # Resource requests and limits
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+          # Persistence for WAL and local chunks
+          persistence:
+            enabled: true
+            size: 10Gi
+            storageClass: default
+        
+        # Memory configuration for chunks cache
         chunksCache:
           allocatedMemory: 1000
+        
+        # Disable distributed components (using SingleBinary mode)
         backend:
           replicas: 0
         read:
@@ -101,9 +176,23 @@ spec:
           replicas: 0
         bloomGateway:
           replicas: 0
+        
+        # Monitoring configuration
+        monitoring:
+          serviceMonitor:
+            enabled: false  # Enable if Prometheus operator is available
+          dashboards:
+            enabled: false  # Enable if Grafana is available
+        
+        # Test configuration
+        test:
+          enabled: false
+  
+  # Sync policy for automated deployment
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - SkipDryRunOnMissingResource=true
     automated:
       prune: true
       selfHeal: true

@@ -47,83 +47,104 @@ We will be using OpenTelemetry Demo load generator to test the setup.
 kubectl apply -f setup-test.yaml
 ```
 
-## Loki setup demo
+## Loki Setup
 
-In order to setup Loki, we will be using an Azure Kubernetes Service (AKS)
-cluster. You can follow the instructions above to get the open-telemetry
-operator up and running on AKS as well. Once that is done, continue here. This
-guide is following:
-<https://grafana.com/docs/loki/latest/setup/install/helm/deployment-guides/azure/>.
+This repository includes comprehensive Loki setup for both local development and Azure production environments. Loki is configured to work with OpenTelemetry for log aggregation and analysis.
 
-### AKS
+### Quick Start
+
+For detailed setup instructions, see [loki-setup-guide.md](./loki-setup-guide.md).
+
+#### Local Development (Kind)
 
 ```bash
-export RESOURCE_GROUP="otel-demo"
-export LOCATION="norwayeast"
-export ACCOUNT_NAME="oteldemo"
+# Create cluster and deploy
+kind create cluster --config kind-config.yaml --name otel-demo
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl kustomize kustomize/clusters/overlays/test | kubectl apply -f -
+
+# Validate setup
+./scripts/validate-loki.sh
 ```
 
+#### Azure Production Setup
+
 ```bash
-az group create --name $RESOURCE_GROUP --location $LOCATION
+# Generate custom configuration
+./scripts/generate-loki-config.sh --interactive
+
+# Or with parameters
+./scripts/generate-loki-config.sh \
+  --storage-account "your-storage" \
+  --client-id "your-client-id" \
+  --mode distributed
+
+# Run generated setup script
+./setup-azure-your-storage.sh
 ```
 
+### Configuration Files
+
+- **`kustomize/clusters/base/loki.yaml`** - ArgoCD Application for SingleBinary mode (development)
+- **`helm-chart-values.yaml`** - Template for Distributed mode (production)
+- **`scripts/generate-loki-config.sh`** - Configuration generator with parameterization
+- **`scripts/validate-loki.sh`** - Setup validation and troubleshooting
+
+### Deployment Modes
+
+#### SingleBinary Mode (Default)
+- **Best for**: Development, testing, demos
+- **Resources**: Lower requirements (3 replicas, 1Gi memory each)
+- **Features**: Simple setup, all components in one binary
+
+#### Distributed Mode
+- **Best for**: Production, high availability
+- **Resources**: Higher requirements (multiple components, 2-4Gi memory)
+- **Features**: Horizontal scaling, component isolation, high availability
+
+### Azure Requirements
+
+1. **Azure CLI** installed and authenticated
+2. **Storage Account** with blob containers: `chunks`, `ruler`, `admin`
+3. **Azure AD Application** with federated credentials
+4. **AKS Cluster** with workload identity enabled
+5. **Storage permissions** for the service principal
+
+### Troubleshooting
+
+Common issues and solutions:
+
 ```bash
-az aks create \
-  --resource-group $RESOURCE_GROUP \
-  --name ote-demo \
-  --node-count 3 \
-  --enable-workload-identity \
-  --enable-oidc-issuer
+# Check pod status
+kubectl get pods -n loki -l app.kubernetes.io/name=loki
+
+# View logs
+kubectl logs -n loki -l app.kubernetes.io/name=loki
+
+# Validate configuration
+./scripts/validate-loki.sh
+
+# Test log ingestion
+kubectl apply -f setup-test.yaml
 ```
 
-```bash
-az storage account create \
---name oteldemo \
---location norwayeast \
---sku Standard_ZRS \
---encryption-services blob \
---resource-group  otel-demo
-```
+For detailed troubleshooting, see [loki-setup-guide.md](./loki-setup-guide.md#troubleshooting).
 
-```bash
-az storage container create --account-name $ACCOUNT_NAME \
---name chunk && \
-az storage container create --account-name $ACCOUNT_NAME \
---name ruler && \
-az storage container create --account-name $ACCOUNT_NAME \
---name admin
-```
+### Security Notes
 
-```bash
-export OIDC=$(az aks show \
---resource-group $RESOURCE_GROUP \
---name ote-demo \
---query "oidcIssuerProfile.issuerUrl" \
--o tsv)
-```
+- **Never commit** actual client IDs or subscription IDs to version control
+- Use **Azure Key Vault** for production secrets
+- Implement **network policies** to restrict access
+- Enable **audit logging** for compliance
+- Follow **least privilege** principles for storage permissions
 
-Update the credentials with the OIDC value.
+### Monitoring
 
-```bash
-cat credentials.json | envsubst > credentials-render.json
-```
+Monitor these key metrics:
+- Pod resource usage and availability
+- Log ingestion rates and errors
+- Storage account capacity and performance
+- Query response times and errors
 
-```bash
-export APP_ID=$(az ad app create \
- --display-name loki \
- --query appId \
- -o tsv)
- ```
-
-```bash
- az ad app federated-credential create \
-  --id $APP_ID \
-  --parameters credentials-render.json
-```
-
-```bash
-az role assignment create \
-  --role "Storage Blob Data Contributor" \
-  --assignee $APP_ID \
-  --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME
-```
+For complete documentation, see [loki-setup-guide.md](./loki-setup-guide.md).
