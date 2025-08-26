@@ -1,1 +1,11 @@
 **/.envrc
+
+# Loki configuration files with sensitive data
+loki-generated.yaml
+setup-azure-*.sh
+credentials-render.json
+
+# Temporary files
+*.tmp
+*.temp
+.env.local

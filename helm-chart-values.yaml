@@ -1,105 +1,219 @@
+# Loki Helm Values Template
+# This file provides a template for Loki configuration in Distributed mode
+# Use this for production deployments requiring high availability and scale
+# 
+# To use this configuration:
+# 1. Replace placeholder values (marked with <PLACEHOLDER>)
+# 2. Adjust replica counts based on your requirements
+# 3. Configure authentication and networking as needed
+# 
+# For development/demo purposes, see kustomize/clusters/base/loki.yaml (SingleBinary mode)
+
 loki:
-   podLabels:
-    "azure.workload.identity/use": "true" # Add this label to the Loki pods to enable workload identity
-#   schemaConfig:
-#     configs:
-#       - from: "2024-04-01"
-#         store: tsdb
-#         object_store: azure
-#         schema: v13
-#         index:
-#           prefix: loki_index_
-#           period: 24h
-   storage_config:
-     azure:
+  # Azure Workload Identity integration
+  podLabels:
+    "azure.workload.identity/use": "true"
+  
+  # Schema configuration for TSDB with Azure backend
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: azure
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  
+  # Azure Blob Storage configuration
+  storage_config:
+    azure:
       account_name: "<INSERT-STORAGE-ACCOUNT-NAME>"
-      container_name: "<CHUNK-CONTAINER-NAME>" # Your actual Azure Blob Storage container name (loki-azure-dev-chunks)
-      use_federated_token: true # Use federated token for authentication
-   ingester:
-       chunk_encoding: snappy
-   pattern_ingester:
-       enabled: true
-   limits_config:
-     allow_structured_metadata: true
-     volume_enabled: true
-     retention_period: 672h # 28 days retention
-   compactor:
-     retention_enabled: true
-     delete_request_store: azure
-   ruler:
+      container_name: "<CHUNK-CONTAINER-NAME>"  # e.g., loki-chunks
+      use_federated_token: true
+  
+  # Ingester configuration for distributed mode
+  ingester:
+    chunk_encoding: snappy
+    chunk_idle_period: 5m
+    chunk_target_size: 1048576  # 1MB chunks
+    max_chunk_age: 1h
+    
+  # Pattern ingester for log pattern detection
+  pattern_ingester:
+    enabled: true
+    
+  # Limits configuration for production workloads
+  limits_config:
+    allow_structured_metadata: true
+    volume_enabled: true
+    retention_period: 672h  # 28 days retention
+    # Production rate limits
+    ingestion_rate_mb: 50
+    ingestion_burst_size_mb: 100
+    max_query_parallelism: 64
+    max_streams_per_user: 10000
+    
+  # Compactor for retention and cleanup
+  compactor:
+    retention_enabled: true
+    delete_request_store: azure
+    compaction_interval: 10m
+    
+  # Ruler for alerting rules
+  ruler:
     enable_api: true
     storage:
       type: azure
       azure:
-        account_name: <INSERT-STORAGE-ACCOUNT-NAME>
-        container_name: <RULER-CONTAINER-NAME> # Your actual Azure Blob Storage container name (loki-azure-dev-ruler)
-        use_federated_token: true # Use federated token for authentication
-      alertmanager_url: http://prom:9093 # The URL of the Alertmanager to send alerts (Prometheus, Mimir, etc.)
+        account_name: "<INSERT-STORAGE-ACCOUNT-NAME>"
+        container_name: "<RULER-CONTAINER-NAME>"  # e.g., loki-ruler
+        use_federated_token: true
+      # Configure your alertmanager endpoint
+      alertmanager_url: "http://alertmanager:9093"
+      
+  # Querier configuration for performance
+  querier:
+    max_concurrent: 8
+    query_timeout: 300s
+    
+  # Storage configuration
+  storage:
+    type: azure
+    bucketNames:
+      chunks: "<CHUNK-CONTAINER-NAME>"    # e.g., loki-chunks
+      ruler: "<RULER-CONTAINER-NAME>"     # e.g., loki-ruler
+      admin: "<ADMIN-CONTAINER-NAME>"     # e.g., loki-admin
+    azure:
+      accountName: "<INSERT-STORAGE-ACCOUNT-NAME>"
+      useFederatedToken: true
 
-   querier:
-      max_concurrent: 4
-
-   storage:
-      type: azure
-      bucketNames:
-        chunks: "<CHUNK-CONTAINER-NAME>" # Your actual Azure Blob Storage container name (loki-azure-dev-chunks)
-        ruler: "<RULER-CONTAINER-NAME>" # Your actual Azure Blob Storage container name (loki-azure-dev-ruler)
-        # admin: "admin-loki-devrel" # Your actual Azure Blob Storage container name (loki-azure-dev-admin)
-      azure:
-        accountName: <INSERT-STORAGE-ACCOUNT-NAME>
-        useFederatedToken: true # Use federated token for authentication
-
-# Define the Azure workload identity
+# Azure Workload Identity Service Account
 serviceAccount:
   name: loki
   annotations:
-    "azure.workload.identity/client-id": "<APP-ID>" # The app ID of the Azure AD app
+    "azure.workload.identity/client-id": "<APP-ID>"  # Replace with your Azure AD app ID
   labels:
     "azure.workload.identity/use": "true"
 
+# Deployment mode: Distributed for production
 deploymentMode: Distributed
 
+# Distributed component configurations
 ingester:
- replicas: 3
- zoneAwareReplication:
-  enabled: false
+  replicas: 3
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+  zoneAwareReplication:
+    enabled: false  # Enable for multi-zone deployments
 
 querier:
- replicas: 3
- maxUnavailable: 2
+  replicas: 3
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
 
 queryFrontend:
- replicas: 2
- maxUnavailable: 1
+  replicas: 2
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
 
 queryScheduler:
- replicas: 2
+  replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
 
 distributor:
- replicas: 3
- maxUnavailable: 2
+  replicas: 3
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
 compactor:
- replicas: 1
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
 
 indexGateway:
- replicas: 2
- maxUnavailable: 1
+  replicas: 2
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
 
 ruler:
- replicas: 1
- maxUnavailable: 1
+  replicas: 1
+  maxUnavailable: 0
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
-
-# This exposes the Loki gateway so it can be written to and queried externaly
+# Gateway configuration for external access
 gateway:
- service:
-   type: LoadBalancer
- basicAuth:
-     enabled: true
-     existingSecret: loki-basic-auth
+  enabled: true
+  replicas: 2
+  service:
+    type: LoadBalancer
+    # For internal access only, use ClusterIP
+    # type: ClusterIP
+  
+  # Basic authentication configuration
+  basicAuth:
+    enabled: true
+    # Create secret manually or via external-secrets operator
+    existingSecret: loki-basic-auth
+    
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
 
-# Since we are using basic auth, we need to pass the username and password to the canary
+# Loki Canary for monitoring
 lokiCanary:
+  enabled: true
+  # Pass credentials for basic auth
   extraArgs:
     - -pass=$(LOKI_PASS)
     - -user=$(LOKI_USER)
@@ -115,16 +229,47 @@ lokiCanary:
           name: canary-basic-auth
           key: username
 
-# Enable minio for storage
+# Disable MinIO (using Azure Blob Storage)
 minio:
- enabled: false
+  enabled: false
 
+# Disable SingleBinary components (using Distributed mode)
 backend:
- replicas: 0
+  replicas: 0
 read:
- replicas: 0
+  replicas: 0
 write:
- replicas: 0
-
+  replicas: 0
 singleBinary:
- replicas: 0
+  replicas: 0
+
+# Monitoring integration
+monitoring:
+  serviceMonitor:
+    enabled: true  # Enable if Prometheus operator is available
+    interval: 30s
+    scrapeTimeout: 10s
+  dashboards:
+    enabled: true  # Enable if Grafana is available
+    
+# Persistence configuration
+persistence:
+  enabled: true
+  size: 100Gi
+  storageClass: "premium-ssd"  # Use appropriate storage class for Azure
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+
+# Network policies (optional, requires CNI support)
+networkPolicy:
+  enabled: false
+  
+# Resource quotas and limits
+global:
+  dnsService: "kube-dns"
+  dnsNamespace: "kube-system"
