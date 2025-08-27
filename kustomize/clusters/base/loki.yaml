@@ -51,7 +51,7 @@ spec:
                 account_name: oteldemo
                 container_name: ruler
                 use_federated_token: true
-              alertmanager_url: http://prom:9093 # The URL of the Alertmanager to send alerts (Prometheus, Mimir, etc.)
+              alertmanager_url: http://prom:9093
           querier:
              max_concurrent: 4
           storage:
