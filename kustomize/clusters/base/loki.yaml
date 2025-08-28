@@ -16,6 +16,7 @@ spec:
     helm:
       values: |
         loki:
+          auth_enabled: false
           podLabels:
             "azure.workload.identity/use": "true"
           schemaConfig:
