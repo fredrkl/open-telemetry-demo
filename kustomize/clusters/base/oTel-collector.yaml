@@ -24,8 +24,9 @@ spec:
         send_batch_size: 10000
         timeout: 10s
     exporters:
-      # NOTE: Prior to v0.86.0 use `logging` instead of `debug`.
       debug: {}
+      otlphttp:
+        endpoint: http://loki.loki.svc.cluster.local:3100/otlp
     service:
       pipelines:
         traces:
@@ -35,7 +36,7 @@ spec:
         logs:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug]
+          exporters: [debug, loki]
         metrics:
           receivers: [otlp]
           processors: [memory_limiter, batch]
