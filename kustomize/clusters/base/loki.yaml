@@ -29,7 +29,7 @@ spec:
                   period: 24h
           storage_config:
             azure:
-              accountName: "oteldemo"
+              account_Name: "oteldemo"
               container_name: "chunks"
               use_federated_token: true
           ingester:
