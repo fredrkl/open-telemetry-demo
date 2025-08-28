@@ -1,15 +1,15 @@
 loki:
    podLabels:
     "azure.workload.identity/use": "true" # Add this label to the Loki pods to enable workload identity
-#   schemaConfig:
-#     configs:
-#       - from: "2024-04-01"
-#         store: tsdb
-#         object_store: azure
-#         schema: v13
-#         index:
-#           prefix: loki_index_
-#           period: 24h
+   schemaConfig:
+     configs:
+       - from: "2024-04-01"
+         store: tsdb
+         object_store: azure
+         schema: v13
+         index:
+           prefix: loki_index_
+           period: 24h
    storage_config:
      azure:
       account_name: "<INSERT-STORAGE-ACCOUNT-NAME>"
