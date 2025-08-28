@@ -1,3 +1,8 @@
+# [v1.12.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.12.0...v1.12.1) (2025-08-28)
+
+## 🐛 Bug Fixes
+- [`91baa0f`](https://github.com/fredrkl/open-telemetry-demo/commit/91baa0f)  Wrong azure account loki name
+
 # [v1.12.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.11.0...v1.12.0) (2025-08-19)
 
 ## ✨ New Features
