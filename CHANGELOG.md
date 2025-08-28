@@ -1,3 +1,8 @@
+# [v1.13.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.12.1...v1.13.0) (2025-08-28)
+
+## ✨ New Features
+- [`50a1da0`](https://github.com/fredrkl/open-telemetry-demo/commit/50a1da0)  Wrong storage config
+
 # [v1.12.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.12.0...v1.12.1) (2025-08-28)
 
 ## 🐛 Bug Fixes
