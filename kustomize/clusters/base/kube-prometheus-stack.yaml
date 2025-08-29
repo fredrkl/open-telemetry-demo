@@ -12,6 +12,11 @@ spec:
     targetRevision: 77.0.2
     helm:
       releaseName: kube-prometheus-stack
+      values: |
+        grafana:
+          additionalDataSources:
+            - name: loki
+              type: loki
     install:
       crds: Create
   destination:
