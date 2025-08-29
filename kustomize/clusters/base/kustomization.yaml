@@ -6,4 +6,4 @@ resources:
   - loki.yaml
   - oTel-collector.yaml
   - otel.yaml
-  - kube-prometheus-stack.yaml
+#  - kube-prometheus-stack.yaml
