@@ -13,11 +13,9 @@ spec:
     helm:
       releaseName: kube-prometheus-stack
       values: |
-        grafana:
-          grafana.ini:
-            auth:
-              disable_login: true
-              disable_login_form: true
+        grafana.ini:
+          security:
+            disable_initial_admin_creation: true
     install:
       crds: Create
   destination:
