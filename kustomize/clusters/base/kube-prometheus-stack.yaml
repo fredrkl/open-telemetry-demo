@@ -17,6 +17,7 @@ spec:
           additionalDataSources:
             - name: loki
               type: loki
+              url: http://loki.loki.svc.cluster.local:3100
     install:
       crds: Create
   destination:
