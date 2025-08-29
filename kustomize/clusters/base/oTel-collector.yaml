@@ -27,6 +27,8 @@ spec:
       debug: {}
       otlphttp:
         endpoint: http://loki.loki.svc.cluster.local:3100/otlp
+      prometheusremotewrite:
+        endpoint: http://kube-prometheus-stack-prometheus.kube-prometheus-stack.svc.cluster.local:9090/api/v1/write
     service:
       pipelines:
         traces:
@@ -40,4 +42,4 @@ spec:
         metrics:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug]
+          exporters: [debug, prometheusremotewrite]
