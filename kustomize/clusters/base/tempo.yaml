@@ -8,7 +8,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: temo
+    namespace: tempo
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: tempo-distributed
