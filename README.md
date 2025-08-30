@@ -4,6 +4,15 @@ This demo repo showcases how to set up an OpenTelemetry Operator on a
 Kubernetes cluster using ArgoCD for deployment management. It uses the
 [app-of-apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern).
 
+The purpose of this demo is to provide a quick way to get started with
+OpenTelemetry in a Kubernetes environment.
+
+We use the telemtrygen load generator to send test logs and traces to the open
+telemetry collector. I have purposely left out metrics from the OpenTelemetry
+Collector configuration. Although the OTel spesification supports metrics, I
+reduce the number of moving components to get metrics into Prometheus. The
+downside is that the applications have direct integration to Prometheus.
+
 ## Local K8s cluster
 
 ```bash
