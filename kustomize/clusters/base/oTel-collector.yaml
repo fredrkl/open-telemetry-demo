@@ -27,12 +27,16 @@ spec:
       debug: {}
       otlphttp:
         endpoint: http://loki.loki.svc.cluster.local:3100/otlp
+      otlp:
+        endpoint: http://tempo.tempo.svc.cluster.local:4317
+        tls:
+          insecure: true
     service:
       pipelines:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug]
+          exporters: [debug, otlp]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, batch]

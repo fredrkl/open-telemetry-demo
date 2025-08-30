@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - loki.yaml
+  - tempo.yaml
   - oTel-collector.yaml
   - otel.yaml
   - kube-prometheus-stack.yaml
