@@ -1,0 +1,70 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tempo
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: tempo
+    targetRevision: 1.20.2
+    helm:
+      values: |
+        # Enable OTLP receivers for traces
+        tempo:
+          receivers:
+            otlp:
+              protocols:
+                grpc:
+                  endpoint: 0.0.0.0:4317
+                http:
+                  endpoint: 0.0.0.0:4318
+        
+        # Configuration for Tempo
+        config: |
+          server:
+            http_listen_port: 3200
+            grpc_listen_port: 9095
+          
+          distributor:
+            receivers:
+              otlp:
+                protocols:
+                  grpc:
+                    endpoint: 0.0.0.0:4317
+                  http:
+                    endpoint: 0.0.0.0:4318
+          
+          storage:
+            trace:
+              backend: local
+              local:
+                path: /var/tempo/traces
+          
+          querier:
+            frontend_address: tempo-query-frontend:9095
+        
+        # Service configuration
+        service:
+          type: ClusterIP
+          port: 3200
+        
+        # Disable persistence for demo
+        persistence:
+          enabled: false
+        
+        # Disable service monitor for simplicity
+        serviceMonitor:
+          enabled: false
+  
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
