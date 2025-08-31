@@ -29,6 +29,8 @@ spec:
         endpoint: http://loki.loki.svc.cluster.local:3100/otlp
       otlp:
         endpoint: http://tempo-distributor.tempo.svc.cluster.local:3200
+        tls:
+          insecure: true
     service:
       pipelines:
         traces:
