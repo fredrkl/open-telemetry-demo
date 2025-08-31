@@ -20,7 +20,8 @@ spec:
               url: http://loki.loki.svc.cluster.local:3100
             - name: tempo
               type: tempo
-              url: http://tempo-querier.tempo.svc.cluster.local:3200
+              url: http://tempo-query-frontend.tempo.svc.cluster.local:3200
+              access: proxy
     install:
       crds: Create
   destination:
