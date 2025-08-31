@@ -28,7 +28,7 @@ spec:
       otlphttp:
         endpoint: http://loki.loki.svc.cluster.local:3100/otlp
       otlp:
-        endpoint: http://tempo-distributor.tempo.svc.cluster.local:3200
+        endpoint: tempo-distributor.tempo.svc.cluster.local:4317
         tls:
           insecure: true
     service:
