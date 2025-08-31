@@ -27,7 +27,7 @@ spec:
       debug: {}
       otlphttp:
         endpoint: http://loki.loki.svc.cluster.local:3100/otlp
-      otlptrace:
+      otlp:
         endpoint: http://tempo-distributor.tempo.svc.cluster.local:3200
     service:
       pipelines:
