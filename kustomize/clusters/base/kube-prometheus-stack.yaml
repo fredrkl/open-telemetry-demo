@@ -18,6 +18,9 @@ spec:
             - name: loki
               type: loki
               url: http://loki.loki.svc.cluster.local:3100
+            - name: tempo
+              type: tempo
+              url: http://tempo-querier.tempo.svc.cluster.local:3200
     install:
       crds: Create
   destination:
