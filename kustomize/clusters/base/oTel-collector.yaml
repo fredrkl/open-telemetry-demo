@@ -34,7 +34,7 @@ spec:
         traces:
           receivers: [otlp]
           processors: [memory_limiter, batch]
-          exporters: [debug]
+          exporters: [debug, otlp]
         logs:
           receivers: [otlp]
           processors: [memory_limiter, batch]
