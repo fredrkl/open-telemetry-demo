@@ -136,3 +136,11 @@ az role assignment create \
   --assignee $APP_ID \
   --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME
 ```
+
+## Access Grafana
+
+```bash
+k port-forward deployments/kube-prometheus-stack-grafana 3000:3000 -n kube-prometheus-stack
+```
+
+The default username is `admin` and password is `prom-operator`.
