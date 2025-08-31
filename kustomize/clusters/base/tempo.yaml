@@ -13,6 +13,12 @@ spec:
     repoURL: https://grafana.github.io/helm-charts
     chart: tempo-distributed
     targetRevision: 1.47.1
+    helm:
+      values: |
+        traces:
+          otlp:
+            grpc:
+              enabled: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
