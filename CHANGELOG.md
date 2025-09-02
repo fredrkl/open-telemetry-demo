@@ -1,3 +1,8 @@
+# [v1.15.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.14.0...v1.15.0) (2025-09-02)
+
+## ✨ New Features
+- [`1605e55`](https://github.com/fredrkl/open-telemetry-demo/commit/1605e55)  Grafana using the simple scalable loki backend
+
 # [v1.14.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.13.0...v1.14.0) (2025-09-02)
 
 ## ✨ New Features
