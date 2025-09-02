@@ -1,3 +1,8 @@
+# [v1.14.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.13.0...v1.14.0) (2025-09-02)
+
+## ✨ New Features
+- [`da6a0d0`](https://github.com/fredrkl/open-telemetry-demo/commit/da6a0d0)  Single Binary mode
+
 # [v1.13.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.12.1...v1.13.0) (2025-08-28)
 
 ## ✨ New Features
