@@ -13,6 +13,11 @@ Collector configuration. Although the OTel spesification supports metrics, I
 reduce the number of moving components to get metrics into Prometheus. The
 downside is that the applications have direct integration to Prometheus.
 
+## Loki versions
+
+The first version of Loki is the 1.14.0 where it is installed as a singleBinary
+mode.
+
 ## Local K8s cluster
 
 ```bash
