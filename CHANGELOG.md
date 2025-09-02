@@ -1,3 +1,8 @@
+# [v1.16.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.15.0...v1.16.0) (2025-09-02)
+
+## ✨ New Features
+- [`179972b`](https://github.com/fredrkl/open-telemetry-demo/commit/179972b)  Using new loki read endpoint
+
 # [v1.15.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.14.0...v1.15.0) (2025-09-02)
 
 ## ✨ New Features
