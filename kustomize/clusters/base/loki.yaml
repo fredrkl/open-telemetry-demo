@@ -69,39 +69,19 @@ spec:
             "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
           labels:
             "azure.workload.identity/use": "true"
-        deploymentMode: SingleBinary
+        deploymentMode: SimpleScalable
+        backend:
+          replicas: 2
+        read:
+          replicas: 2
+        write:
+          replicas: 2
         gateway:
           enabled: false
         minio:
           enabled: false
-        singleBinary:
-          replicas: 3
         chunksCache:
           allocatedMemory: 1000
-        backend:
-          replicas: 0
-        read:
-          replicas: 0
-        write:
-          replicas: 0
-        ingester:
-          replicas: 0
-        querier:
-          replicas: 0
-        queryFrontend:
-          replicas: 0
-        queryScheduler:
-          replicas: 0
-        distributor:
-          replicas: 0
-        compactor:
-          replicas: 0
-        indexGateway:
-          replicas: 0
-        bloomCompactor:
-          replicas: 0
-        bloomGateway:
-          replicas: 0
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
