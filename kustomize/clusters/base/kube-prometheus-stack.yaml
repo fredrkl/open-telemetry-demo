@@ -17,7 +17,7 @@ spec:
           additionalDataSources:
             - name: loki
               type: loki
-              url: http://loki-backend.loki.svc.cluster.local:3100
+              url: http://loki-read.loki.svc.cluster.local:3100
             - name: tempo
               type: tempo
               url: http://tempo-query-frontend.tempo.svc.cluster.local:3200
