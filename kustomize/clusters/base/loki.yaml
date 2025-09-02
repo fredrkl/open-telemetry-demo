@@ -77,7 +77,7 @@ spec:
         write:
           replicas: 2
         gateway:
-          enabled: false
+          enabled: true
         minio:
           enabled: false
         chunksCache:
