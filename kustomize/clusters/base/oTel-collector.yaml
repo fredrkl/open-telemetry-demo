@@ -26,7 +26,7 @@ spec:
     exporters:
       debug: {}
       otlphttp:
-        endpoint: http://loki-write.loki.svc.cluster.local:3100/otlp
+        endpoint: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
       otlp:
         endpoint: tempo-distributor.tempo.svc.cluster.local:4317
         tls:
