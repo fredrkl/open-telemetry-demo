@@ -26,7 +26,7 @@ spec:
     exporters:
       debug: {}
       otlphttp:
-        endpoint: http://loki-gateway.loki.svc.cluster.local/api/v1/push
+        endpoint: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
         tls:
           insecure: true
       otlp:
