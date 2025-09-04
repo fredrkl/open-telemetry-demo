@@ -68,11 +68,11 @@ spec:
             "azure.workload.identity/use": "true"
         deploymentMode: SimpleScalable
         backend:
-          replicas: 1
+          replicas: 0
         read:
-          replicas: 1
+          replicas: 0
         write:
-          replicas: 1
+          replicas: 0
         gateway:
           enabled: true
         minio:
