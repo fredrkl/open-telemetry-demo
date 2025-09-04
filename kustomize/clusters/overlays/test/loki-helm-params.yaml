@@ -1,0 +1,4 @@
+---
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/storage_config/azure/account_name
+  value: oteldemo
