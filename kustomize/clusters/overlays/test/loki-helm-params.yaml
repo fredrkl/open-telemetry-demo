@@ -5,3 +5,9 @@
 - op: replace
   path: /spec/source/helm/valuesObject/loki/storage_config/azure/container_name
   value: chunks
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/ruler/storage/azure/account_name
+  value: oteldemo
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/ruler/storage/azure/container_name
+  value: ruler

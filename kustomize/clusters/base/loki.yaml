@@ -49,8 +49,8 @@ spec:
             storage:
               type: azure
               azure:
-                account_name: oteldemo
-                container_name: ruler
+                account_name: "SHOULD BE REPLACED"
+                container_name: "SHOULD BE REPLACED"
                 use_federated_token: true
               alertmanager_url: http://prom:9093
           querier:
