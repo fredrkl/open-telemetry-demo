@@ -14,11 +14,8 @@ spec:
     chart: loki
     targetRevision: 6.38.0
     helm:
-      values: |
+      valuesObject:
         loki:
-          auth_enabled: false
-          podLabels:
-            "azure.workload.identity/use": "true"
           schemaConfig:
             configs:
               - from: "2024-04-01"
@@ -40,7 +37,7 @@ spec:
           limits_config:
             allow_structured_metadata: true
             volume_enabled: true
-            retention_period: 672h # 28 days retention
+            retention_period: 672h  # 28 days retention
           compactor:
             retention_enabled: true
             delete_request_store: azure
