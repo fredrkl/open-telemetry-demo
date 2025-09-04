@@ -31,7 +31,7 @@ spec:
           storage_config:
             azure:
               account_name: "SHOULD BE REPLACED"
-              container_name: "chunks"
+              container_name: "SHOULD BE REPLACED"
               use_federated_token: true
           ingester:
             chunk_encoding: snappy
