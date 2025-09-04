@@ -1,3 +1,8 @@
+# [v1.18.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.17.0...v1.18.0) (2025-09-04)
+
+## ✨ New Features
+- [`3304183`](https://github.com/fredrkl/open-telemetry-demo/commit/3304183)  Remove loki
+
 # [v1.17.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.16.0...v1.17.0) (2025-09-04)
 
 ## ✨ New Features
