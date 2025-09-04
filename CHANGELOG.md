@@ -1,3 +1,8 @@
+# [v1.17.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.16.0...v1.17.0) (2025-09-04)
+
+## ✨ New Features
+- [`a5e75ad`](https://github.com/fredrkl/open-telemetry-demo/commit/a5e75ad)  Using value object instead of value
+
 # [v1.16.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.15.0...v1.16.0) (2025-09-02)
 
 ## ✨ New Features
