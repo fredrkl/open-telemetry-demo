@@ -14,7 +14,7 @@ spec:
     chart: loki
     targetRevision: 6.38.0
     helm:
-      valuesObject:
+      values: |
         loki:
           schemaConfig:
             configs:
