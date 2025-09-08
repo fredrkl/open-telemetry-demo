@@ -1,3 +1,8 @@
+# [v1.19.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.18.0...v1.19.0) (2025-09-08)
+
+## ✨ New Features
+- [`02566ec`](https://github.com/fredrkl/open-telemetry-demo/commit/02566ec)  Use overlays for environment spesific values
+
 # [v1.18.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.17.0...v1.18.0) (2025-09-04)
 
 ## ✨ New Features
