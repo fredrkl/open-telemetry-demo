@@ -58,15 +58,15 @@ spec:
           storage:
             type: azure
             bucketNames:
-              chunks: "chunks"
-              ruler: "ruler"
+              chunks: "SHOULD BE REPLACED"
+              ruler: "SHOULD BE REPLACED"
             azure:
-              accountName: oteldemo
+              accountName: "SHOULD BE REPLACED"
               useFederatedToken: true
         serviceAccount:
           name: loki
           annotations:
-            "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
+            "azure.workload.identity/client-id": "SHOULD BE REPLACED"
           labels:
             "azure.workload.identity/use": "true"
         deploymentMode: SimpleScalable

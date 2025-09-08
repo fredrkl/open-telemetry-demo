@@ -11,3 +11,15 @@
 - op: replace
   path: /spec/source/helm/valuesObject/loki/ruler/storage/azure/container_name
   value: ruler
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/storage/bucketNames/chunks
+  value: chunks
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/storage/bucketNames/ruler
+  value: ruler
+- op: replace
+  path: /spec/source/helm/valuesObject/loki/storage/azure/accountName
+  value: oteldemo
+- op: replace
+  path: /spec/source/helm/valuesObject/serviceAccount/annotations/azure.workload.identity~1client-id
+  value: "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
