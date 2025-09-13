@@ -70,14 +70,16 @@ spec:
           labels:
             "azure.workload.identity/use": "true"
         deploymentMode: SimpleScalable
+        read:
+          replicas: 1
         backend:
           replicas: 1
           persistence:
             volumeClaimsEnabled: false
-        read:
-          replicas: 1
         write:
           replicas: 1
+          persistence:
+            volumeClaimsEnabled: false
         gateway:
           enabled: true
         minio:
