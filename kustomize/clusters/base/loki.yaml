@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
-    targetRevision: 6.39.0
+    targetRevision: 6.38.0
     helm:
       valuesObject:
         loki:
@@ -71,13 +71,13 @@ spec:
             "azure.workload.identity/use": "true"
         deploymentMode: SimpleScalable
         read:
-          replicas: 1
+          replicas: 3
         backend:
-          replicas: 1
+          replicas: 3
           persistence:
             volumeClaimsEnabled: false
         write:
-          replicas: 1
+          replicas: 3
           persistence:
             volumeClaimsEnabled: false
         gateway:
