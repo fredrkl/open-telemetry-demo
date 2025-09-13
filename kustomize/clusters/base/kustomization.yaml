@@ -7,4 +7,4 @@ resources:
   - otel.yaml
   - kube-prometheus-stack.yaml
   - tempo.yaml
-#  - loki.yaml
+  - loki.yaml
