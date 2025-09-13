@@ -72,6 +72,8 @@ spec:
         deploymentMode: SimpleScalable
         backend:
           replicas: 1
+          persistence:
+            volumeClaimsEnabled: false
         read:
           replicas: 1
         write:
