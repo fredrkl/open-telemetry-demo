@@ -4,10 +4,10 @@ kind: Kustomization
 resources:
   - ../../base/
   - app-of-apps.yaml
-patches:
-  - target:
-      group: argoproj.io
-      version: v1alpha1
-      kind: Application
-      name: loki
-    path: loki-helm-params.yaml
+#patches:
+#  - target:
+#      group: argoproj.io
+#      version: v1alpha1
+#      kind: Application
+#      name: loki
+#    path: loki-helm-params.yaml
