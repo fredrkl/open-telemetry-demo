@@ -86,6 +86,8 @@ spec:
           enabled: false
         chunksCache:
           allocatedMemory: 1000
+        ruler:
+          replicas: 1
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
