@@ -1,13 +1,13 @@
 ---
 - op: replace
   path: /spec/source/helm/valuesObject/loki/storage_config/azure/account_name
-  value: oteldemo
+  value: opentelemtrydemostorage
 - op: replace
   path: /spec/source/helm/valuesObject/loki/storage_config/azure/container_name
   value: chunks
 - op: replace
   path: /spec/source/helm/valuesObject/loki/ruler/storage/azure/account_name
-  value: oteldemo
+  value: opentelemtrydemostorage
 - op: replace
   path: /spec/source/helm/valuesObject/loki/ruler/storage/azure/container_name
   value: ruler
@@ -19,7 +19,7 @@
   value: ruler
 - op: replace
   path: /spec/source/helm/valuesObject/loki/storage/azure/accountName
-  value: oteldemo
+  value: opentelemtrydemostorage
 - op: replace
   path: /spec/source/helm/valuesObject/serviceAccount/annotations/azure.workload.identity~1client-id
-  value: "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
+  value: "51f3e094-4680-490c-839b-7436233672f4"
