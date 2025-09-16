@@ -52,7 +52,7 @@ spec:
                 account_name: "SHOULD BE REPLACED"
                 container_name: "SHOULD BE REPLACED"
                 use_federated_token: true
-              alertmanager_url: http://prom:9093
+            alertmanager_url: http://kube-prometheus-stack-alertmanager.kube-prometheus-stack.svc.cluster.local:9093
           querier:
              max_concurrent: 4
           storage:
