@@ -102,7 +102,7 @@ az storage account create \
 
 ```bash
 az storage container create --account-name $ACCOUNT_NAME \
---name chunk && \
+--name chunks && \
 az storage container create --account-name $ACCOUNT_NAME \
 --name ruler
 ```
