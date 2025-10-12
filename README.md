@@ -164,4 +164,5 @@ The default username is `admin` and password is `prom-operator`.
 
 Add the following dashboard to Grafana:
 
-<https://grafana.com/grafana/dashboards/11489-loki-canary/>
+- <https://grafana.com/grafana/dashboards/11489-loki-canary/>
+- <https://grafana.com/grafana/dashboards/14055-loki-stack-monitoring-promtail-loki/>
