@@ -159,3 +159,9 @@ k port-forward deployments/kube-prometheus-stack-grafana 3000:3000 -n kube-prome
 ```
 
 The default username is `admin` and password is `prom-operator`.
+
+## Add Loki health monitoring dashboard
+
+Add the following dashboard to Grafana:
+
+<https://grafana.com/grafana/dashboards/11489-loki-canary/>
