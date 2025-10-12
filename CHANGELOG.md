@@ -1,3 +1,8 @@
+# [v1.20.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.19.0...v1.20.0) (2025-10-11)
+
+## ✨ New Features
+- [`9099150`](https://github.com/fredrkl/open-telemetry-demo/commit/9099150)  Loki moniroing
+
 # [v1.19.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.18.0...v1.19.0) (2025-09-08)
 
 ## ✨ New Features
