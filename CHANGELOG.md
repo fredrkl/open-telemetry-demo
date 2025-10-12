@@ -1,3 +1,8 @@
+# [v1.20.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.0...v1.20.1) (2025-10-12)
+
+## 🐛 Bug Fixes
+- [`6c9e72a`](https://github.com/fredrkl/open-telemetry-demo/commit/6c9e72a)  Missing label on service monitor
+
 # [v1.20.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.19.0...v1.20.0) (2025-10-11)
 
 ## ✨ New Features
