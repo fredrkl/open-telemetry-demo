@@ -14,6 +14,6 @@ spec:
     matchNames:
       - loki
   endpoints:
-    - port: 3500
+    - port: "3500"
       interval: 30s
       path: /metrics
