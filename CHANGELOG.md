@@ -1,3 +1,8 @@
+# [v1.20.2](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.1...v1.20.2) (2025-10-12)
+
+## 🐛 Bug Fixes
+- [`e2e390d`](https://github.com/fredrkl/open-telemetry-demo/commit/e2e390d)  Scraping the wrong http endpoint
+
 # [v1.20.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.0...v1.20.1) (2025-10-12)
 
 ## 🐛 Bug Fixes
