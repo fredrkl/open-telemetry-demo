@@ -11,10 +11,11 @@ spec:
     matchLabels:
       app.kubernetes.io/component: canary
       app.kubernetes.io/instance: loki
+      app.kubernetes.io/name: loki
   namespaceSelector:
     matchNames:
       - loki
   endpoints:
-    - port: "3500"
+    - port: http-metrics
       interval: 30s
       path: /metrics
