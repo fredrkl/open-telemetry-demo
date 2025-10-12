@@ -9,7 +9,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: loki-canary
+      app.kubernetes.io/component: canary
+      app.kubernetes.io/instance: loki
   namespaceSelector:
     matchNames:
       - loki
