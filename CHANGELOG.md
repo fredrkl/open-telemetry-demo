@@ -1,3 +1,33 @@
+# [v1.20.2](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.1...v1.20.2) (2025-10-12)
+
+## 🐛 Bug Fixes
+- [`e2e390d`](https://github.com/fredrkl/open-telemetry-demo/commit/e2e390d)  Scraping the wrong http endpoint
+
+# [v1.20.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.0...v1.20.1) (2025-10-12)
+
+## 🐛 Bug Fixes
+- [`6c9e72a`](https://github.com/fredrkl/open-telemetry-demo/commit/6c9e72a)  Missing label on service monitor
+
+# [v1.20.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.19.0...v1.20.0) (2025-10-11)
+
+## ✨ New Features
+- [`9099150`](https://github.com/fredrkl/open-telemetry-demo/commit/9099150)  Loki moniroing
+
+# [v1.19.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.18.0...v1.19.0) (2025-09-08)
+
+## ✨ New Features
+- [`02566ec`](https://github.com/fredrkl/open-telemetry-demo/commit/02566ec)  Use overlays for environment spesific values
+
+# [v1.18.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.17.0...v1.18.0) (2025-09-04)
+
+## ✨ New Features
+- [`3304183`](https://github.com/fredrkl/open-telemetry-demo/commit/3304183)  Remove loki
+
+# [v1.17.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.16.0...v1.17.0) (2025-09-04)
+
+## ✨ New Features
+- [`a5e75ad`](https://github.com/fredrkl/open-telemetry-demo/commit/a5e75ad)  Using value object instead of value
+
 # [v1.16.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.15.0...v1.16.0) (2025-09-02)
 
 ## ✨ New Features

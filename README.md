@@ -72,9 +72,9 @@ guide is following:
 ### AKS
 
 ```bash
-export RESOURCE_GROUP="otel-demo"
+export RESOURCE_GROUP="OTelemetry-demo"
 export LOCATION="norwayeast"
-export ACCOUNT_NAME="oteldemo"
+export ACCOUNT_NAME="opentelemtrydemostorage"
 ```
 
 ```bash
@@ -84,34 +84,33 @@ az group create --name $RESOURCE_GROUP --location $LOCATION
 ```bash
 az aks create \
   --resource-group $RESOURCE_GROUP \
-  --name ote-demo \
+  --name opentelemetrydemo \
   --node-count 3 \
   --enable-workload-identity \
-  --enable-oidc-issuer
+  --enable-oidc-issuer \
+  --generate-ssh-keys
 ```
 
 ```bash
 az storage account create \
---name oteldemo \
+--name $ACCOUNT_NAME \
 --location norwayeast \
 --sku Standard_ZRS \
 --encryption-services blob \
---resource-group  otel-demo
+--resource-group $RESOURCE_GROUP
 ```
 
 ```bash
 az storage container create --account-name $ACCOUNT_NAME \
---name chunk && \
+--name chunks && \
 az storage container create --account-name $ACCOUNT_NAME \
---name ruler && \
-az storage container create --account-name $ACCOUNT_NAME \
---name admin
+--name ruler
 ```
 
 ```bash
 export OIDC=$(az aks show \
 --resource-group $RESOURCE_GROUP \
---name ote-demo \
+--name opentelemetrydemo \
 --query "oidcIssuerProfile.issuerUrl" \
 -o tsv)
 ```
@@ -123,16 +122,27 @@ cat credentials.json | envsubst > credentials-render.json
 ```
 
 ```bash
-export APP_ID=$(az ad app create \
- --display-name loki \
- --query appId \
- -o tsv)
- ```
+az identity create \
+  --name $RESOURCE_GROUP \
+  --resource-group $RESOURCE_GROUP
+```
 
 ```bash
- az ad app federated-credential create \
-  --id $APP_ID \
-  --parameters credentials-render.json
+az identity federated-credential create \
+  --name LokiFederated \
+  --identity-name $RESOURCE_GROUP \
+  --resource-group $RESOURCE_GROUP \
+  --issuer $OIDC \
+  --subject "system:serviceaccount:loki:loki" \
+  --audiences "api://AzureADTokenExchange"
+```
+
+```bash
+APP_ID=$(az identity show \
+  --name $RESOURCE_GROUP \
+  --resource-group $RESOURCE_GROUP \
+  --query 'clientId' \
+  --output tsv)
 ```
 
 ```bash

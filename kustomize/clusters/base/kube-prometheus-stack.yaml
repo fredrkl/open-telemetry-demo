@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 77.5.0
+    targetRevision: 78.0.0
     helm:
       releaseName: kube-prometheus-stack
       values: |
@@ -17,7 +17,7 @@ spec:
           additionalDataSources:
             - name: loki
               type: loki
-              url: http://loki-read.loki.svc.cluster.local:3100
+              url: http://loki-gateway.loki.svc.cluster.local
             - name: tempo
               type: tempo
               url: http://tempo-query-frontend.tempo.svc.cluster.local:3200

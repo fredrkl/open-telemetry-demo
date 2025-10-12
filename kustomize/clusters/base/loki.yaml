@@ -12,9 +12,9 @@ spec:
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
-    targetRevision: 6.38.0
+    targetRevision: 6.40.0
     helm:
-      values: |
+      valuesObject:
         loki:
           auth_enabled: false
           podLabels:
@@ -30,8 +30,8 @@ spec:
                   period: 24h
           storage_config:
             azure:
-              account_name: "oteldemo"
-              container_name: "chunks"
+              account_name: "SHOULD BE REPLACED"
+              container_name: "SHOULD BE REPLACED"
               use_federated_token: true
           ingester:
             chunk_encoding: snappy
@@ -39,8 +39,8 @@ spec:
             enabled: true
           limits_config:
             allow_structured_metadata: true
-            volume_enabled: true
-            retention_period: 672h # 28 days retention
+            volume_enabled: false
+            retention_period: 672h  # 28 days retention
           compactor:
             retention_enabled: true
             delete_request_store: azure
@@ -49,33 +49,37 @@ spec:
             storage:
               type: azure
               azure:
-                account_name: oteldemo
-                container_name: ruler
+                account_name: "SHOULD BE REPLACED"
+                container_name: "SHOULD BE REPLACED"
                 use_federated_token: true
-              alertmanager_url: http://prom:9093
+            alertmanager_url: http://kube-prometheus-stack-alertmanager.kube-prometheus-stack.svc.cluster.local:9093
           querier:
              max_concurrent: 4
           storage:
             type: azure
             bucketNames:
-              chunks: "chunks"
-              ruler: "ruler"
+              chunks: "SHOULD BE REPLACED"
+              ruler: "SHOULD BE REPLACED"
             azure:
-              accountName: oteldemo
+              accountName: "SHOULD BE REPLACED"
               useFederatedToken: true
         serviceAccount:
           name: loki
           annotations:
-            "azure.workload.identity/client-id": "16b6ae75-279d-4ebb-ab69-dfeb135eaee8"
+            "azure.workload.identity/client-id": "SHOULD BE REPLACED"
           labels:
             "azure.workload.identity/use": "true"
         deploymentMode: SimpleScalable
-        backend:
-          replicas: 2
         read:
-          replicas: 2
+          replicas: 3
+        backend:
+          replicas: 3
+          persistence:
+            volumeClaimsEnabled: true
         write:
-          replicas: 2
+          replicas: 3
+          persistence:
+            volumeClaimsEnabled: true
         gateway:
           enabled: true
         minio:
