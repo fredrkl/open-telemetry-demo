@@ -4,6 +4,8 @@ kind: ServiceMonitor
 metadata:
   name: loki-canary
   namespace: loki
+  labels:
+    release: kube-prometheus-stack
 spec:
   selector:
     matchLabels:
