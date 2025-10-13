@@ -166,3 +166,9 @@ Add the following dashboard to Grafana:
 
 - <https://grafana.com/grafana/dashboards/11489-loki-canary/>
 - <https://grafana.com/grafana/dashboards/14055-loki-stack-monitoring-promtail-loki/>
+
+## Expose OTel Collector
+
+```bash
+k port-forward main-collector-{collectorId} 4317:4317 -n otel
+```
