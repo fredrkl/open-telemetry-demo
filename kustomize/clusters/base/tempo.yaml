@@ -14,7 +14,7 @@ spec:
     chart: tempo-distributed
     targetRevision: 1.47.2
     helm:
-      values: |
+      valuesObject:
         traces:
           otlp:
             grpc:
