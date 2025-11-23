@@ -15,8 +15,9 @@ spec:
     targetRevision: 1.47.2
     helm:
       valuesObject:
-        podLabels:
-          "azure.workload.identity/use": "true"
+        compactor:
+          podLabels:
+            "azure.workload.identity/use": "true"
         storage:
           trace:
             backend: azure
