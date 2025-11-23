@@ -1,3 +1,8 @@
+# [v1.21.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.0...v1.21.1) (2025-11-23)
+
+## 🐛 Bug Fixes
+- [`70739c6`](https://github.com/fredrkl/open-telemetry-demo/commit/70739c6)  Missing user assigned id
+
 # [v1.21.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.2...v1.21.0) (2025-11-23)
 
 ## ✨ New Features
