@@ -1,3 +1,8 @@
+# [v1.21.0](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.2...v1.21.0) (2025-11-23)
+
+## ✨ New Features
+- [`6822a72`](https://github.com/fredrkl/open-telemetry-demo/commit/6822a72)  Using azure blob for traces
+
 # [v1.20.2](https://github.com/fredrkl/open-telemetry-demo/compare/v1.20.1...v1.20.2) (2025-10-12)
 
 ## 🐛 Bug Fixes
