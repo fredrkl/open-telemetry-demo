@@ -6,6 +6,6 @@ resources:
   - oTel-collector.yaml
   - otel.yaml
   - kube-prometheus-stack.yaml
+  - tempo.yaml
   - loki.yaml
   - loki-monitoring.yaml
-#  - tempo.yaml
