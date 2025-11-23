@@ -15,6 +15,9 @@ spec:
     targetRevision: 1.47.2
     helm:
       valuesObject:
+        global:
+          podLabels:
+            - "azure.workload.identity/use": "true"
         extraEnv:
           - name: AZURE_CLIENT_ID
             value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
