@@ -197,6 +197,13 @@ APP_ID=$(az identity show \
 
 ```bash
 az role assignment create \
+  --role "Storage Blob Data Owner" \
+  --assignee $APP_ID \
+  --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME_TEMPO
+```
+
+```bash
+az role assignment create \
   --role "Storage Blob Data Contributor" \
   --assignee $APP_ID \
   --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME_TEMPO
