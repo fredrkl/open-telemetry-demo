@@ -75,6 +75,7 @@ guide is following:
 export RESOURCE_GROUP="OTelemetry-demo"
 export LOCATION="norwayeast"
 export ACCOUNT_NAME="opentelemtrydemostorage"
+export ACCOUNT_NAME_TEMPO="opentelemtrytempo"
 ```
 
 ```bash
@@ -91,6 +92,8 @@ az aks create \
   --generate-ssh-keys
 ```
 
+Loki storage account and containers.
+
 ```bash
 az storage account create \
 --name $ACCOUNT_NAME \
@@ -105,6 +108,22 @@ az storage container create --account-name $ACCOUNT_NAME \
 --name chunks && \
 az storage container create --account-name $ACCOUNT_NAME \
 --name ruler
+```
+
+Tempo storage account and containers.
+
+```bash
+az storage account create \
+--name $ACCOUNT_NAME_TEMPO \
+--location norwayeast \
+--sku Standard_ZRS \
+--encryption-services blob \
+--resource-group $RESOURCE_GROUP
+```
+
+```bash
+az storage container create --account-name $ACCOUNT_NAME_TEMPO \
+--name traces
 ```
 
 ```bash
@@ -123,7 +142,13 @@ cat credentials.json | envsubst > credentials-render.json
 
 ```bash
 az identity create \
-  --name $RESOURCE_GROUP \
+  --name RESOURCE_GROUP \
+  --resource-group $RESOURCE_GROUP
+```
+
+```bash
+az identity create \
+  --name tempo \
   --resource-group $RESOURCE_GROUP
 ```
 
@@ -134,6 +159,16 @@ az identity federated-credential create \
   --resource-group $RESOURCE_GROUP \
   --issuer $OIDC \
   --subject "system:serviceaccount:loki:loki" \
+  --audiences "api://AzureADTokenExchange"
+```
+
+```bash
+az identity federated-credential create \
+  --name TempoFederated \
+  --identity-name tempo \
+  --resource-group $RESOURCE_GROUP \
+  --issuer $OIDC \
+  --subject "system:serviceaccount:tempo:tempo" \
   --audiences "api://AzureADTokenExchange"
 ```
 
@@ -150,6 +185,21 @@ az role assignment create \
   --role "Storage Blob Data Contributor" \
   --assignee $APP_ID \
   --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME
+```
+
+```bash
+APP_ID=$(az identity show \
+  --name tempo \
+  --resource-group $RESOURCE_GROUP \
+  --query 'clientId' \
+  --output tsv)
+```
+
+```bash
+az role assignment create \
+  --role "Storage Blob Data Contributor" \
+  --assignee $APP_ID \
+  --scope /subscriptions/d8fc2dcc-fe0e-418a-bf44-7d2512d6d068/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$ACCOUNT_NAME_TEMPO
 ```
 
 ## Access Grafana

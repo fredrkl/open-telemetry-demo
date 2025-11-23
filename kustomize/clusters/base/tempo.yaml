@@ -15,10 +15,23 @@ spec:
     targetRevision: 1.47.2
     helm:
       valuesObject:
+        storage:
+          trace:
+            backend: azure
+            azure:
+              container_name: traces
+              storage_account_name: opentelemtrydemostorage
+              use_federated_token: true
         traces:
           otlp:
             grpc:
               enabled: true
+        serviceAccount:
+          name: tempo
+          annotations:
+            "azure.workload.identity/client-id": "SHOULD BE REPLACED"
+          labels:
+            "azure.workload.identity/use": "true"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
