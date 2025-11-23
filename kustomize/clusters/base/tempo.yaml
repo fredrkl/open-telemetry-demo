@@ -24,6 +24,7 @@ spec:
               container_name: traces
               storage_account_name: opentelemtrydemostorage
               use_federated_token: true
+              use_managed_identity: false
         traces:
           otlp:
             grpc:
