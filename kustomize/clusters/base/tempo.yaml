@@ -38,7 +38,6 @@ spec:
             "azure.workload.identity/client-id": "SHOULD BE REPLACED"
           labels:
             "azure.workload.identity/use": "true"
-            compactor:
         ingester:
           extraEnv:
             - name: AZURE_CLIENT_ID
