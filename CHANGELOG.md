@@ -1,3 +1,8 @@
+# [v1.21.6](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.5...v1.21.6) (2025-11-24)
+
+## 🐛 Bug Fixes
+- [`f12888c`](https://github.com/fredrkl/open-telemetry-demo/commit/f12888c)  Ingester missing workload identity
+
 # [v1.21.5](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.4...v1.21.5) (2025-11-24)
 
 ## 🐛 Bug Fixes
