@@ -51,22 +51,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-#        extraEnv:
-#          - name: AZURE_CLIENT_ID
-#            value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
-#        ingester:
-#          extraEnv:
-#            - name: AZURE_CLIENT_ID
-#              value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
-#        distributor:
-#          extraEnv:
-#            - name: AZURE_CLIENT_ID
-#              value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
-#        querier:
-#          extraEnv:
-#            - name: AZURE_CLIENT_ID
-#              value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
-#        queryFrontend:
-#          extraEnv:
-#            - name: AZURE_CLIENT_ID
-#              value: 41e5a552-bbe9-4ec0-8733-47df49e7f7c3
