@@ -8,4 +8,4 @@ resources:
   - kube-prometheus-stack.yaml
   - loki.yaml
   - loki-monitoring.yaml
-#  - tempo.yaml
+  - tempo.yaml
