@@ -1,3 +1,8 @@
+# [v1.21.5](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.4...v1.21.5) (2025-11-24)
+
+## 🐛 Bug Fixes
+- [`866df86`](https://github.com/fredrkl/open-telemetry-demo/commit/866df86)  Missing workload identity on query frontend
+
 # [v1.21.4](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.3...v1.21.4) (2025-11-24)
 
 ## 🐛 Bug Fixes
