@@ -215,7 +215,14 @@ az role assignment create \
 k port-forward deployments/kube-prometheus-stack-grafana 3000:3000 -n kube-prometheus-stack
 ```
 
-The default username is `admin` and password is `prom-operator`.
+The default username is `admin` and password is:
+
+```bash
+k get secrets -n kube-prometheus-stack kube-prometheus-stack-grafana -o \
+jsonpath='{.data.admin-password}' | base64 -d | pbcopy
+```
+
+`prom-operator`.
 
 ## Add Loki health monitoring dashboard
 
