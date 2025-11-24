@@ -21,6 +21,9 @@ spec:
         distributor:
           podLabels:
             "azure.workload.identity/use": "true"
+        querier:
+          podLabels:
+            "azure.workload.identity/use": "true"
         storage:
           trace:
             backend: azure
