@@ -1,3 +1,8 @@
+# [v1.21.3](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.2...v1.21.3) (2025-11-24)
+
+## 🐛 Bug Fixes
+- [`ae92e5b`](https://github.com/fredrkl/open-telemetry-demo/commit/ae92e5b)  Distributor not using workload identity
+
 # [v1.21.2](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.1...v1.21.2) (2025-11-24)
 
 ## 🐛 Bug Fixes
