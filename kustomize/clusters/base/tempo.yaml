@@ -23,7 +23,7 @@ spec:
             backend: azure
             azure:
               container_name: traces
-              storage_account_name: opentelemtrydemostorage
+              storage_account_name: opentelemtrytempo
               use_federated_token: true
 #              use_managed_identity: false
         traces:
