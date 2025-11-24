@@ -45,8 +45,8 @@ spec:
           name: tempo
           annotations:
             "azure.workload.identity/client-id": "SHOULD BE REPLACED"
-          labels:
-            "azure.workload.identity/use": "true"
+#          labels:
+#            "azure.workload.identity/use": "true"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
