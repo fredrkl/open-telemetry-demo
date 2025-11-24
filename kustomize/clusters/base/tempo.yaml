@@ -27,6 +27,9 @@ spec:
         queryFrontend:
           podLabels:
             "azure.workload.identity/use": "true"
+        ingester:
+          podLabels:
+            "azure.workload.identity/use": "true"
         storage:
           trace:
             backend: azure
