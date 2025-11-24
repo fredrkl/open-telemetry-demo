@@ -1,3 +1,8 @@
+# [v1.21.4](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.3...v1.21.4) (2025-11-24)
+
+## 🐛 Bug Fixes
+- [`a7c26b5`](https://github.com/fredrkl/open-telemetry-demo/commit/a7c26b5)  Querier not using workload identity
+
 # [v1.21.3](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.2...v1.21.3) (2025-11-24)
 
 ## 🐛 Bug Fixes
