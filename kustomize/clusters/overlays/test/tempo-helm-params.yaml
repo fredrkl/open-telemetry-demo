@@ -2,6 +2,6 @@
 - op: replace
   path: /spec/source/helm/valuesObject/serviceAccount/annotations/azure.workload.identity~1client-id
   value: "41e5a552-bbe9-4ec0-8733-47df49e7f7c3"
-- op: add
-  path: /spec/source/helm/valuesObject/storage/trace/azure/user_assigned_id
-  value: "41e5a552-bbe9-4ec0-8733-47df49e7f7c3"
+#- op: add
+#  path: /spec/source/helm/valuesObject/storage/trace/azure/user_assigned_id
+#  value: "41e5a552-bbe9-4ec0-8733-47df49e7f7c3"
