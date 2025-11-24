@@ -18,6 +18,9 @@ spec:
         compactor:
           podLabels:
             "azure.workload.identity/use": "true"
+        distributor:
+          podLabels:
+            "azure.workload.identity/use": "true"
         storage:
           trace:
             backend: azure
