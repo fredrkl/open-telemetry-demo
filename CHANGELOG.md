@@ -1,3 +1,8 @@
+# [v1.21.2](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.1...v1.21.2) (2025-11-24)
+
+## 🐛 Bug Fixes
+- [`9d3c6b7`](https://github.com/fredrkl/open-telemetry-demo/commit/9d3c6b7)  Wrong storage account
+
 # [v1.21.1](https://github.com/fredrkl/open-telemetry-demo/compare/v1.21.0...v1.21.1) (2025-11-23)
 
 ## 🐛 Bug Fixes
